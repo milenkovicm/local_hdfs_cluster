@@ -439,7 +439,7 @@
 <property><name>hadoop.kerberos.min.seconds.before.relogin</name><value>60</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.namenode.edit.log.autoroll.multiplier.threshold</name><value>0.5</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>hadoop.security.group.mapping.ldap.ssl</name><value>false</value><final>false</final><source>core-default.xml</source></property>
-<property><name>fs.defaultFS</name><value>hdfs://localhost:65163</value><final>false</final><source>programmatically</source></property>
+<property><name>fs.defaultFS</name><value>hdfs://localhost:9000</value><final>false</final><source>programmatically</source></property>
 <property><name>yarn.nodemanager.disk-health-checker.max-disk-utilization-per-disk-percentage</name><value>90.0</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>yarn.nodemanager.container-monitor.procfs-tree.smaps-based-rss.enabled</name><value>false</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.provided.acls.import.enabled</name><value>false</value><final>false</final><source>hdfs-default.xml</source></property>
@@ -526,7 +526,7 @@
 <property><name>mapreduce.job.cache.limit.max-resources-mb</name><value>0</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>yarn.dispatcher.cpu-monitor.samples-per-min</name><value>60</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>fs.s3a.select.input.csv.quote.escape.character</name><value>\\</value><final>false</final><source>core-default.xml</source></property>
-<property><name>dfs.namenode.rpc-address</name><value>localhost:65163</value><final>false</final><source>programmatically</source></property>
+<property><name>dfs.namenode.rpc-address</name><value>localhost:9000</value><final>false</final><source>programmatically</source></property>
 <property><name>dfs.https.server.keystore.resource</name><value>ssl-server.xml</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>fs.s3a.ssl.channel.mode</name><value>default_jsse</value><final>false</final><source>core-default.xml</source></property>
 <property><name>fs.s3a.buffer.dir</name><value>${hadoop.tmp.dir}/s3a</value><final>false</final><source>core-default.xml</source></property>

@@ -19,6 +19,7 @@ fun main(args: Array<String>) {
 
     val conf = Configuration()
     conf["dfs.permissions.enabled"]             = "false"
+
     // https://hadoop.apache.org/docs/r3.1.0/hadoop-project-dist/hadoop-hdfs/HdfsMultihoming.html
     conf["dfs.namenode.rpc-bind-host"]          = "0.0.0.0"
     conf["dfs.namenode.servicerpc-bind-host"]   = "0.0.0.0"
@@ -26,11 +27,27 @@ fun main(args: Array<String>) {
     conf["dfs.namenode.https-bind-host"]        = "0.0.0.0"
     conf["dfs.client.use.datanode.hostname"]    = "true"
 
+    // control ports for data node
+    val confDN0 = Configuration()
+    confDN0["dfs.datanode.address"]                = "0.0.0.0:50010"
+    confDN0["dfs.datanode.ipc.address"]            = "0.0.0.0:50011"
+    confDN0["dfs.datanode.http.address"]           = "0.0.0.0:50012"
+    confDN0["dfs.datanode.https.address"]          = "0.0.0.0:50013"
+
+//    val confDN1 = Configuration()
+//    confDN1["dfs.datanode.address"]                = "0.0.0.0:50020"
+//    confDN1["dfs.datanode.ipc.address"]            = "0.0.0.0:50021"
+//    confDN1["dfs.datanode.http.address"]           = "0.0.0.0:50022"
+//    confDN1["dfs.datanode.https.address"]          = "0.0.0.0:50023"
 
     val cluster = MiniDFSCluster.Builder(conf, dataFile)
+        .clusterId("Testcontainer HDFS")
         .nameNodeHttpPort(8080)
         .numDataNodes(1)
         .nameNodePort(9000)
+        .checkDataNodeAddrConfig(true) // required if we want to change the name node address and port
+        .checkDataNodeHostConfig(true) // required if we want to change the name node address and port
+        .dataNodeConfOverlays(arrayOf(confDN0))
         .manageNameDfsDirs(true)
         .manageDataDfsDirs(true)
         .format(true)
