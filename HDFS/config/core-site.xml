@@ -73,6 +73,7 @@
 <property><name>yarn.app.attempt.diagnostics.limit.kc</name><value>64</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>rpc.engine.org.apache.hadoop.hdfs.protocolPB.NamenodeProtocolPB</name><value>org.apache.hadoop.ipc.ProtobufRpcEngine2</value><final>false</final><source>programmatically</source></property>
 <property><name>dfs.namenode.checkpoint.check.period</name><value>60</value><final>false</final><source>hdfs-default.xml</source></property>
+<property><name>dfs.namenode.http-bind-host</name><value>0.0.0.0</value><final>false</final><source>programmatically</source></property>
 <property><name>dfs.namenode.max-num-blocks-to-log</name><value>1000</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.datanode.ec.reconstruction.stripedread.buffer.size</name><value>65536</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>hadoop.security.group.mapping.ldap.search.attr.group.name</name><value>cn</value><final>false</final><source>core-default.xml</source></property>
@@ -165,6 +166,7 @@
 <property><name>dfs.client.block.write.replace-datanode-on-failure.policy</name><value>DEFAULT</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.block.misreplication.processing.limit</name><value>10000</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>hadoop.registry.jaas.context</name><value>Client</value><final>false</final><source>core-default.xml</source></property>
+<property><name>dfs.namenode.https-bind-host</name><value>0.0.0.0</value><final>false</final><source>programmatically</source></property>
 <property><name>hadoop.shell.safely.delete.limit.num.files</name><value>100</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.client.short.circuit.num</name><value>1</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>mapreduce.shuffle.pathcache.expire-after-access-minutes</name><value>5</value><final>false</final><source>mapred-default.xml</source></property>
@@ -347,6 +349,7 @@
 <property><name>yarn.timeline-service.entity-group-fs-store.app-cache-size</name><value>10</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>ipc.client.tcpnodelay</name><value>true</value><final>false</final><source>core-default.xml</source></property>
 <property><name>yarn.resourcemanager.metrics.runtime.buckets</name><value>60,300,1440</value><final>false</final><source>yarn-default.xml</source></property>
+<property><name>dfs.namenode.rpc-bind-host</name><value>0.0.0.0</value><final>false</final><source>programmatically</source></property>
 <property><name>tfile.fs.output.buffer.size</name><value>262144</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.namenode.top.window.num.buckets</name><value>10</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>yarn.sharedcache.uploader.server.address</name><value>0.0.0.0:8046</value><final>false</final><source>yarn-default.xml</source></property>
@@ -379,6 +382,7 @@
 <property><name>dfs.balancer.movedWinWidth</name><value>5400000</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.datanode.transfer.socket.send.buffer.size</name><value>0</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>yarn.nodemanager.disk-health-checker.interval-ms</name><value>120000</value><final>false</final><source>yarn-default.xml</source></property>
+<property><name>dfs.namenode.servicerpc-bind-host</name><value>0.0.0.0</value><final>false</final><source>programmatically</source></property>
 <property><name>dfs.namenode.list.cache.directives.num.responses</name><value>100</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>yarn.resourcemanager.resource-tracker.client.thread-count</name><value>50</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>mapreduce.shuffle.port</name><value>13562</value><final>false</final><source>mapred-default.xml</source></property>
@@ -435,7 +439,7 @@
 <property><name>hadoop.kerberos.min.seconds.before.relogin</name><value>60</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.namenode.edit.log.autoroll.multiplier.threshold</name><value>0.5</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>hadoop.security.group.mapping.ldap.ssl</name><value>false</value><final>false</final><source>core-default.xml</source></property>
-<property><name>fs.defaultFS</name><value>hdfs://localhost:57259</value><final>false</final><source>programmatically</source></property>
+<property><name>fs.defaultFS</name><value>hdfs://localhost:58514</value><final>false</final><source>programmatically</source></property>
 <property><name>yarn.nodemanager.disk-health-checker.max-disk-utilization-per-disk-percentage</name><value>90.0</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>yarn.nodemanager.container-monitor.procfs-tree.smaps-based-rss.enabled</name><value>false</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.provided.acls.import.enabled</name><value>false</value><final>false</final><source>hdfs-default.xml</source></property>
@@ -522,7 +526,7 @@
 <property><name>mapreduce.job.cache.limit.max-resources-mb</name><value>0</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>yarn.dispatcher.cpu-monitor.samples-per-min</name><value>60</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>fs.s3a.select.input.csv.quote.escape.character</name><value>\\</value><final>false</final><source>core-default.xml</source></property>
-<property><name>dfs.namenode.rpc-address</name><value>localhost:57259</value><final>false</final><source>programmatically</source></property>
+<property><name>dfs.namenode.rpc-address</name><value>localhost:58514</value><final>false</final><source>programmatically</source></property>
 <property><name>dfs.https.server.keystore.resource</name><value>ssl-server.xml</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>fs.s3a.ssl.channel.mode</name><value>default_jsse</value><final>false</final><source>core-default.xml</source></property>
 <property><name>fs.s3a.buffer.dir</name><value>${hadoop.tmp.dir}/s3a</value><final>false</final><source>core-default.xml</source></property>
@@ -1169,7 +1173,7 @@
 <property><name>dfs.datanode.available-space-volume-choosing-policy.balanced-space-preference-fraction</name><value>0.75f</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>yarn.log-aggregation.file-controller.TFile.class</name><value>org.apache.hadoop.yarn.logaggregation.filecontroller.tfile.LogAggregationTFileController</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>yarn.webapp.filter-entity-list-by-user</name><value>false</value><final>false</final><source>yarn-default.xml</source></property>
-<property><name>dfs.namenode.http-address</name><value>localhost:8080</value><final>false</final><source>programmatically</source></property>
+<property><name>dfs.namenode.http-address</name><value>0.0.0.0:8080</value><final>false</final><source>programmatically</source></property>
 <property><name>fs.s3a.metadatastore.impl</name><value>org.apache.hadoop.fs.s3a.s3guard.NullMetadataStore</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.namenode.startup.delay.block.deletion.sec</name><value>0</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>yarn.nodemanager.health-checker.interval-ms</name><value>600000</value><final>false</final><source>yarn-default.xml</source></property>

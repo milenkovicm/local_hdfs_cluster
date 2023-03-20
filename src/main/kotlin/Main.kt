@@ -7,6 +7,8 @@ import java.nio.file.StandardOpenOption
 
 const val READY_MESSAGE = "testcontainers.hdfs-ready"
 
+// FIXME: we need java 11 for this project
+
 fun main(args: Array<String>) {
 
     val hdfsData = "./HDFS/data"
@@ -16,11 +18,19 @@ fun main(args: Array<String>) {
     val configPath = Paths.get(hdfsConfig, "core-site.xml")
 
     val conf = Configuration()
-    conf["dfs.permissions.enabled"] = "false"
+    conf["dfs.permissions.enabled"]             = "false"
+    // https://hadoop.apache.org/docs/r3.1.0/hadoop-project-dist/hadoop-hdfs/HdfsMultihoming.html
+    conf["dfs.namenode.rpc-bind-host"]          = "0.0.0.0"
+    conf["dfs.namenode.servicerpc-bind-host"]   = "0.0.0.0"
+    conf["dfs.namenode.http-bind-host"]         = "0.0.0.0"
+    conf["dfs.namenode.https-bind-host"]        = "0.0.0.0"
+    conf["dfs.client.use.datanode.hostname"]    = "true"
+
 
     val cluster = MiniDFSCluster.Builder(conf, dataFile)
         .nameNodeHttpPort(8080)
         .numDataNodes(1)
+        .hosts(arrayOf(""))
         .manageNameDfsDirs(true)
         .manageDataDfsDirs(true)
         .format(true)
