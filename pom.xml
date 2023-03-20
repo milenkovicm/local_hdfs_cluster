@@ -39,6 +39,15 @@
                         <image>milenkovicm/testcontainer-hdfs</image>
                     </to>
                     <from><image>openjdk:11-slim</image></from>
+                    <extraDirectories>
+                    <paths>
+                        <path>HDFS</path>
+                        <path>
+                            <from>HDFS/config/</from>
+                            <into>/HDFS/config/</into>
+                        </path>
+                    </paths>
+                    </extraDirectories>
                 </configuration>
             </plugin>
             <plugin>

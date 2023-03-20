@@ -30,7 +30,7 @@ fun main(args: Array<String>) {
     val cluster = MiniDFSCluster.Builder(conf, dataFile)
         .nameNodeHttpPort(8080)
         .numDataNodes(1)
-        .hosts(arrayOf(""))
+        .nameNodePort(9000)
         .manageNameDfsDirs(true)
         .manageDataDfsDirs(true)
         .format(true)
