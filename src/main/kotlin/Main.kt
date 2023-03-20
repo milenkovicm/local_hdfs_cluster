@@ -5,7 +5,7 @@ import java.nio.file.Files
 import java.nio.file.Paths
 import java.nio.file.StandardOpenOption
 
-const val READY_MESSAGE = "testcontainers.hdfs-ready"
+const val READY_MESSAGE = "testcontainers.hdfs.status.READY"
 
 // FIXME: we need java 11 for this project
 

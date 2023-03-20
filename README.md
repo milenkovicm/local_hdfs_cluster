@@ -6,3 +6,9 @@
 - https://hub.docker.com/r/omaraloraini/testcontainers-hdfs
 - https://github.com/kohsuke/hadoop/blob/master/src/test/org/apache/hadoop/hdfs/MiniDFSCluster.java
 - https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-minicluster jar
+
+## Building
+
+```bash
+mvn compile jib:dockerBuild
+```
