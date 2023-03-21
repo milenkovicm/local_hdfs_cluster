@@ -42,7 +42,7 @@ fun main(args: Array<String>) {
 
     val cluster = MiniDFSCluster.Builder(conf, dataFile)
         .clusterId("Testcontainer HDFS")
-        .nameNodeHttpPort(8080)
+        .nameNodeHttpPort(8020)
         .numDataNodes(1)
         .nameNodePort(9000)
         .checkDataNodeAddrConfig(true) // required if we want to change the name node address and port

@@ -39,6 +39,16 @@
                         <image>milenkovicm/testcontainer-hdfs</image>
                     </to>
                     <from><image>openjdk:11-slim</image></from>
+                    <container >
+                        <jvmFlags>
+                            <jvmFlag>-Xmx2g</jvmFlag>
+                        </jvmFlags>
+                        <ports>
+                            <port>8020</port>
+                            <port>9000</port>
+                            <port>50010-50015</port>
+                        </ports>
+                    </container>
                     <extraDirectories>
                     <paths>
                         <path>HDFS</path>
