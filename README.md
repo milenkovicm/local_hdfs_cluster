@@ -12,3 +12,9 @@
 ```bash
 mvn compile jib:dockerBuild
 ```
+
+## Running 
+
+```bash
+docker run -ti -p 9000:9000 -p 8020:8020 -p 50010-50015 milenkovicm/testcontainer-hdfs
+```
