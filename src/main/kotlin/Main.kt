@@ -13,35 +13,30 @@ fun main(args: Array<String>) {
 
     val hdfsData = "./HDFS/data"
     val hdfsConfig = "./HDFS/config"
-
+    val bindAddress = "0.0.0.0"
     val dataFile = File(hdfsData)
     val configPath = Paths.get(hdfsConfig, "core-site.xml")
 
     val conf = Configuration()
     conf["dfs.permissions.enabled"]             = "false"
-
-    // https://hadoop.apache.org/docs/r3.1.0/hadoop-project-dist/hadoop-hdfs/HdfsMultihoming.html
-    conf["dfs.namenode.rpc-bind-host"]          = "0.0.0.0"
-    conf["dfs.namenode.servicerpc-bind-host"]   = "0.0.0.0"
-    conf["dfs.namenode.http-bind-host"]         = "0.0.0.0"
-    conf["dfs.namenode.https-bind-host"]        = "0.0.0.0"
-    conf["dfs.client.use.datanode.hostname"]    = "true"
+    conf["dfs.namenode.rpc-bind-host"]          = bindAddress // https://hadoop.apache.org/docs/r3.1.0/hadoop-project-dist/hadoop-hdfs/HdfsMultihoming.html
+    conf["dfs.namenode.servicerpc-bind-host"]   = bindAddress
+    conf["dfs.namenode.http-bind-host"]         = bindAddress
+    conf["dfs.namenode.https-bind-host"]        = bindAddress
+    //conf["dfs.client.use.datanode.hostname"]    = "true"
+    conf["dfs.client.read.shortcircuit"]        = "false"
 
     // control ports for data node
     val confDN0 = Configuration()
-    confDN0["dfs.datanode.address"]                = "0.0.0.0:50010"
-    confDN0["dfs.datanode.ipc.address"]            = "0.0.0.0:50011"
-    confDN0["dfs.datanode.http.address"]           = "0.0.0.0:50012"
-    confDN0["dfs.datanode.https.address"]          = "0.0.0.0:50013"
-
-//    val confDN1 = Configuration()
-//    confDN1["dfs.datanode.address"]                = "0.0.0.0:50020"
-//    confDN1["dfs.datanode.ipc.address"]            = "0.0.0.0:50021"
-//    confDN1["dfs.datanode.http.address"]           = "0.0.0.0:50022"
-//    confDN1["dfs.datanode.https.address"]          = "0.0.0.0:50023"
+    confDN0["dfs.datanode.address"]                = "${bindAddress}:50010"
+    confDN0["dfs.datanode.ipc.address"]            = "${bindAddress}:50011"
+    confDN0["dfs.datanode.http.address"]           = "${bindAddress}:50012"
+    confDN0["dfs.datanode.https.address"]          = "${bindAddress}:50013"
+    confDN0["dfs.client.read.shortcircuit"]           = "false"
 
     val cluster = MiniDFSCluster.Builder(conf, dataFile)
         .clusterId("Testcontainer HDFS")
+        .skipFsyncForTesting(true)
         .nameNodeHttpPort(8020)
         .numDataNodes(1)
         .nameNodePort(9000)

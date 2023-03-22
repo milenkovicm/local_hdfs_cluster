@@ -39,7 +39,9 @@
                         <image>milenkovicm/testcontainer-hdfs</image>
                     </to>
                     <from><image>openjdk:11-slim</image></from>
-                    <container >
+                    <container>
+                        <!-- not sure if we need root -->
+<!--                        <user>root:root</user>-->
                         <jvmFlags>
                             <jvmFlag>-Xmx2g</jvmFlag>
                         </jvmFlags>
