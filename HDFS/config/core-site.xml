@@ -229,7 +229,7 @@
 <property><name>hadoop.http.staticuser.user</name><value>dr.who</value><final>false</final><source>core-default.xml</source></property>
 <property><name>ipc.[port_number].scheduler.impl</name><value>org.apache.hadoop.ipc.DefaultRpcScheduler</value><final>false</final><source>core-default.xml</source></property>
 <property><name>hadoop.http.authentication.kerberos.keytab</name><value>${user.home}/hadoop.keytab</value><final>false</final><source>core-default.xml</source></property>
-<property><name>dfs.namenode.checkpoint.dir</name><value>file:/Users/marko/git/local__dfs_cluster/HDFS/data/namesecondary-0-1,file:/Users/marko/git/local__dfs_cluster/HDFS/data/namesecondary-0-2</value><final>false</final><source>programmatically</source></property>
+<property><name>dfs.namenode.checkpoint.dir</name><value>file:/Users/marko/git/local_hdfs_cluster/HDFS/data/namesecondary-0-1,file:/Users/marko/git/local_hdfs_cluster/HDFS/data/namesecondary-0-2</value><final>false</final><source>programmatically</source></property>
 <property><name>dfs.provided.aliasmap.inmemory.enabled</name><value>false</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>mapreduce.job.maxtaskfailures.per.tracker</name><value>3</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>mapreduce.shuffle.max.connections</name><value>0</value><final>false</final><source>mapred-default.xml</source></property>
@@ -794,7 +794,7 @@
 <property><name>fs.client.resolve.remote.symlinks</name><value>true</value><final>false</final><source>core-default.xml</source></property>
 <property><name>yarn.resourcemanager.nm-container-queuing.min-queue-length</name><value>5</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>mapreduce.reduce.cpu.vcores</name><value>1</value><final>false</final><source>mapred-default.xml</source></property>
-<property><name>dfs.namenode.name.dir</name><value>file:/Users/marko/git/local__dfs_cluster/HDFS/data/name-0-1,file:/Users/marko/git/local__dfs_cluster/HDFS/data/name-0-2</value><final>false</final><source>programmatically</source></property>
+<property><name>dfs.namenode.name.dir</name><value>file:/Users/marko/git/local_hdfs_cluster/HDFS/data/name-0-1,file:/Users/marko/git/local_hdfs_cluster/HDFS/data/name-0-2</value><final>false</final><source>programmatically</source></property>
 <property><name>mapreduce.task.local-fs.write-limit.bytes</name><value>-1</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>adl.http.timeout</name><value>-1</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.webhdfs.rest-csrf.methods-to-ignore</name><value>GET,OPTIONS,HEAD,TRACE</value><final>false</final><source>hdfs-default.xml</source></property>
@@ -1133,7 +1133,7 @@
 <property><name>dfs.balancer.getBlocks.min-block-size</name><value>10485760</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>yarn.scheduler.maximum-allocation-mb</name><value>8192</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>ipc.[port_number].decay-scheduler.decay-factor</name><value>0.5</value><final>false</final><source>core-default.xml</source></property>
-<property><name>hdfs.minidfs.basedir</name><value>/Users/marko/git/local__dfs_cluster/./HDFS/data</value><final>false</final><source>programmatically</source></property>
+<property><name>hdfs.minidfs.basedir</name><value>/Users/marko/git/local_hdfs_cluster/./HDFS/data</value><final>false</final><source>programmatically</source></property>
 <property><name>fs.AbstractFileSystem.viewfs.impl</name><value>org.apache.hadoop.fs.viewfs.ViewFs</value><final>false</final><source>core-default.xml</source></property>
 <property><name>fs.ftp.host</name><value>0.0.0.0</value><final>false</final><source>core-default.xml</source></property>
 <property><name>yarn.nodemanager.linux-container-executor.nonsecure-mode.local-user</name><value>nobody</value><final>false</final><source>yarn-default.xml</source></property>
