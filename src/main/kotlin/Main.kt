@@ -11,11 +11,11 @@ const val READY_MESSAGE = "testcontainers.hdfs.status.READY"
 
 fun main(args: Array<String>) {
 
-    val hdfsData = "./HDFS/data"
-    val hdfsConfig = "./HDFS/config"
-    val bindAddress = "0.0.0.0"
-    val dataFile = File(hdfsData)
-    val configPath = Paths.get(hdfsConfig, "core-site.xml")
+    val hdfsData        = "./HDFS/data"
+    val hdfsConfig      = "./HDFS/config"
+    val bindAddress     = "0.0.0.0"
+    val dataFile        = File(hdfsData)
+    val configPath      = Paths.get(hdfsConfig, "core-site.xml")
 
     val conf = Configuration()
     conf["dfs.permissions.enabled"]             = "false"
@@ -32,7 +32,7 @@ fun main(args: Array<String>) {
     confDN0["dfs.datanode.ipc.address"]            = "${bindAddress}:50011"
     confDN0["dfs.datanode.http.address"]           = "${bindAddress}:50012"
     confDN0["dfs.datanode.https.address"]          = "${bindAddress}:50013"
-    confDN0["dfs.client.read.shortcircuit"]           = "false"
+    confDN0["dfs.client.read.shortcircuit"]        = "false"
 
     val cluster = MiniDFSCluster.Builder(conf, dataFile)
         .clusterId("Testcontainer HDFS")
