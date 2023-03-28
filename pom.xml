@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>consoleApp</name>
+    <name>MiniDFS (HDFS) Cluster startup procedure and docker image</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -34,14 +34,20 @@
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
                 <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <to>
                         <image>milenkovicm/testcontainer-hdfs</image>
                     </to>
                     <from><image>openjdk:11-slim</image></from>
                     <container>
-                        <!-- not sure if we need root -->
-<!--                        <user>root:root</user>-->
                         <jvmFlags>
                             <jvmFlag>-Xmx2g</jvmFlag>
                         </jvmFlags>
@@ -136,13 +142,11 @@
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-minicluster</artifactId>
             <version>3.3.4</version>
-<!--            <scope>test</scope>-->
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>5.2.0</version>
-<!--            <scope>test</scope>-->
         </dependency>
     </dependencies>
 

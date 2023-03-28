@@ -7,8 +7,6 @@ import java.nio.file.StandardOpenOption
 
 const val READY_MESSAGE = "testcontainers.hdfs.status.READY"
 
-// FIXME: we need java 11 for this project
-
 fun main(args: Array<String>) {
 
     val hdfsData        = "./HDFS/data"
@@ -23,7 +21,7 @@ fun main(args: Array<String>) {
     conf["dfs.namenode.servicerpc-bind-host"]   = bindAddress
     conf["dfs.namenode.http-bind-host"]         = bindAddress
     conf["dfs.namenode.https-bind-host"]        = bindAddress
-    //conf["dfs.client.use.datanode.hostname"]    = "true"
+    // conf["dfs.client.use.datanode.hostname"]    = "true"
     conf["dfs.client.read.shortcircuit"]        = "false"
 
     // control ports for data node
@@ -48,8 +46,6 @@ fun main(args: Array<String>) {
         .format(true)
         .build()
 
-    Runtime.getRuntime().addShutdownHook(Thread { cluster.shutdown() })
-
     cluster.waitActive()
 
     Files.newOutputStream(
@@ -61,5 +57,4 @@ fun main(args: Array<String>) {
     println("Name Node  :  ${cluster.nameNode.hostAndPort}")
     println("Data Nodes : ${cluster.dataNodes}")
     println(READY_MESSAGE)
-
 }
