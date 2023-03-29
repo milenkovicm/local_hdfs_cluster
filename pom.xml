@@ -17,6 +17,7 @@
         <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>
+        <version.hadoop>3.3.4</version.hadoop>
     </properties>
 
     <repositories>
@@ -45,8 +46,11 @@
                 <configuration>
                     <to>
                         <image>milenkovicm/testcontainer-hdfs</image>
+                        <tags>${version.hadoop}</tags>
                     </to>
-                    <from><image>openjdk:11-slim</image></from>
+                    <from>
+                        <image>openjdk:11-slim</image>
+                    </from>
                     <container>
                         <jvmFlags>
                             <jvmFlag>-Xmx2g</jvmFlag>
@@ -58,13 +62,13 @@
                         </ports>
                     </container>
                     <extraDirectories>
-                    <paths>
-                        <path>HDFS</path>
-                        <path>
-                            <from>HDFS/config/</from>
-                            <into>/HDFS/config/</into>
-                        </path>
-                    </paths>
+                        <paths>
+                            <path>HDFS</path>
+                            <path>
+                                <from>HDFS/config/</from>
+                                <into>/HDFS/config/</into>
+                            </path>
+                        </paths>
                     </extraDirectories>
                 </configuration>
             </plugin>
@@ -141,7 +145,7 @@
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-minicluster</artifactId>
-            <version>3.3.4</version>
+            <version>${version.hadoop}</version>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
