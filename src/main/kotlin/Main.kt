@@ -23,15 +23,6 @@ fun main(args: Array<String>) {
     conf["dfs.namenode.https-bind-host"]             = bindAddress
     conf["dfs.namenode.delegation.token.always-use"] = "true"
 
-    // conf["dfs.namenode.safemode.extension.testing"] = "1"
-    // conf["dfs.client.use.datanode.hostname"]    = "true"
-    // conf["dfs.client.read.shortcircuit"]        = "false"
-    // conf["dfs.client-write-packet-size"]        = "262144"
-    // conf["io.file.buffer.size"]                 = "262144"
-    // conf["file.client-write-packet-size"]       = "262144"
-    // conf["kfs.client-write-packet-size"]        = "262144"
-
-
     // control ports for data node
     val confDN0 = Configuration()
     confDN0["dfs.datanode.address"]                     = "${bindAddress}:50010"
@@ -40,10 +31,9 @@ fun main(args: Array<String>) {
     confDN0["dfs.datanode.https.address"]               = "${bindAddress}:50013"
     confDN0["dfs.client.read.shortcircuit"]             = "false"
     confDN0["dfs.namenode.delegation.token.always-use"] = "true"
-    // conf["dfs.client-write-packet-size"]           = "262144"
-    // conf["io.file.buffer.size"]                    = "262144"
-    // conf["file.client-write-packet-size"]          = "262144"
-    // conf["kfs.client-write-packet-size"]           = "262144"
+    // confDN0["dfs.client-write-packet-size"]           = "262144"
+    // confDN0["io.file.buffer.size"]                    = "262144"
+
 
     val cluster = MiniDFSCluster.Builder(conf, dataFile)
         .clusterId("Testcontainer HDFS")
