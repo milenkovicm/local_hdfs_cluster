@@ -37,7 +37,7 @@
 <property><name>yarn.nodemanager.resource.memory.enforced</name><value>true</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>io.erasurecode.codec.rs-legacy.rawcoders</name><value>rs-legacy_java</value><final>false</final><source>core-default.xml</source></property>
 <property><name>hadoop.ssl.hostname.verifier</name><value>DEFAULT</value><final>false</final><source>core-default.xml</source></property>
-<property><name>dfs.client.read.shortcircuit</name><value>false</value><final>false</final><source>programmatically</source></property>
+<property><name>dfs.client.read.shortcircuit</name><value>false</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.client.failover.sleep.base.millis</name><value>500</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>yarn.resourcemanager.nm-container-queuing.sorting-nodes-interval-ms</name><value>1000</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>fs.s3a.select.input.csv.header</name><value>none</value><final>false</final><source>core-default.xml</source></property>
@@ -1072,7 +1072,7 @@
 <property><name>dfs.datanode.transferTo.allowed</name><value>true</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.namenode.full.block.report.lease.length.ms</name><value>300000</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>yarn.resourcemanager.activities-manager.app-activities.max-queue-length</name><value>100</value><final>false</final><source>yarn-default.xml</source></property>
-<property><name>dfs.namenode.delegation.token.always-use</name><value>false</value><final>false</final><source>hdfs-default.xml</source></property>
+<property><name>dfs.namenode.delegation.token.always-use</name><value>true</value><final>false</final><source>programmatically</source></property>
 <property><name>yarn.nodemanager.runtime.linux.runc.privileged-containers.allowed</name><value>false</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.client.read.striped.threadpool.size</name><value>18</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>mapreduce.job.cache.limit.max-resources</name><value>0</value><final>false</final><source>mapred-default.xml</source></property>
