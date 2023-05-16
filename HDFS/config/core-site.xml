@@ -67,6 +67,7 @@
 <property><name>dfs.http.client.retry.max.attempts</name><value>10</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>yarn.nodemanager.runtime.linux.sandbox-mode</name><value>disabled</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>yarn.federation.state-store.class</name><value>org.apache.hadoop.yarn.server.federation.store.impl.MemoryFederationStateStore</value><final>false</final><source>yarn-default.xml</source></property>
+<property><name>dfs.datanode.ec.reconstruct.read.bandwidthPerSec</name><value>0</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>yarn.resourcemanager.am.max-attempts</name><value>2</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>yarn.timeline-service.client.internal-timers-ttl-secs</name><value>420</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.block.scanner.skip.recent.accessed</name><value>false</value><final>false</final><source>hdfs-default.xml</source></property>
@@ -118,6 +119,7 @@
 <property><name>dfs.qjournal.finalize-segment.timeout.ms</name><value>120000</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>yarn.nodemanager.runtime.linux.docker.stop.grace-period</name><value>10</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.namenode.fs-limits.max-xattrs-per-inode</name><value>32</value><final>false</final><source>hdfs-default.xml</source></property>
+<property><name>yarn.log-aggregation.enable-local-cleanup</name><value>true</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.namenode.gc.time.monitor.sleep.interval.ms</name><value>5s</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>fs.getspaceused.jitterMillis</name><value>60000</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.secondary.namenode.kerberos.internal.spnego.principal</name><value>${dfs.web.authentication.kerberos.principal}</value><final>false</final><source>hdfs-default.xml</source></property>
@@ -132,12 +134,10 @@
 <property><name>yarn.sharedcache.nm.uploader.replication.factor</name><value>10</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.provided.aliasmap.text.delimiter</name><value>,</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.lock.suppress.warning.interval</name><value>10s</value><final>false</final><source>hdfs-default.xml</source></property>
-<property><name>fs.s3a.metadatastore.metadata.ttl</name><value>15m</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.namenode.num.checkpoints.retained</name><value>2</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>mapreduce.jobhistory.max-age-ms</name><value>604800000</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>fs.azure.authorization</name><value>false</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.block.scanner.volume.bytes.per.second</name><value>1048576</value><final>false</final><source>hdfs-default.xml</source></property>
-<property><name>fs.s3a.s3guard.ddb.table.sse.enabled</name><value>false</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.client.read.shortcircuit.buffer.size</name><value>1048576</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.datanode.ec.reconstruction.stripedread.timeout.millis</name><value>5000</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.disk.balancer.max.disk.errors</name><value>5</value><final>false</final><source>hdfs-default.xml</source></property>
@@ -219,6 +219,7 @@
 <property><name>yarn.nodemanager.runtime.linux.docker.delayed-removal.allowed</name><value>false</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>mapreduce.map.skip.proc-count.auto-incr</name><value>true</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>hadoop.security.group.mapping.ldap.search.attr.member</name><value>member</value><final>false</final><source>core-default.xml</source></property>
+<property><name>hadoop.security.resolver.impl</name><value>org.apache.hadoop.net.DNSDomainNameResolver</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.datanode.directoryscan.throttle.limit.ms.per.sec</name><value>1000</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.image.transfer.chunksize</name><value>65536</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>yarn.resourcemanager.connect.retry-interval.ms</name><value>30000</value><final>false</final><source>yarn-default.xml</source></property>
@@ -338,7 +339,6 @@
 <property><name>dfs.datanode.failed.volumes.tolerated</name><value>0</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>hadoop.caller.context.signature.max.size</name><value>40</value><final>false</final><source>core-default.xml</source></property>
 <property><name>fs.s3a.connection.timeout</name><value>200000</value><final>false</final><source>core-default.xml</source></property>
-<property><name>fs.s3a.s3guard.ddb.table.capacity.read</name><value>0</value><final>false</final><source>core-default.xml</source></property>
 <property><name>fs.s3a.change.detection.source</name><value>etag</value><final>false</final><source>core-default.xml</source></property>
 <property><name>yarn.resourcemanager.delayed.delegation-token.removal-interval-ms</name><value>30000</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>yarn.nodemanager.opportunistic-containers-use-pause-for-preemption</name><value>false</value><final>false</final><source>yarn-default.xml</source></property>
@@ -470,7 +470,6 @@
 <property><name>ipc.client.bind.wildcard.addr</name><value>false</value><final>false</final><source>core-default.xml</source></property>
 <property><name>mapreduce.job.complete.cancel.delegation.tokens</name><value>true</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>yarn.scheduler.minimum-allocation-vcores</name><value>1</value><final>false</final><source>yarn-default.xml</source></property>
-<property><name>fs.s3a.s3guard.ddb.throttle.retry.interval</name><value>100ms</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.client.mmap.cache.size</name><value>256</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.namenode.available-space-block-placement-policy.balanced-space-preference-fraction</name><value>0.6</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>ipc.client.connect.retry.interval</name><value>1000</value><final>false</final><source>core-default.xml</source></property>
@@ -507,6 +506,7 @@
 <property><name>yarn.resourcemanager.opportunistic.max.container-allocation.per.am.heartbeat</name><value>-1</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>yarn.client.failover-proxy-provider</name><value>org.apache.hadoop.yarn.client.ConfiguredRMFailoverProxyProvider</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>yarn.resourcemanager.delegation-token-renewer.thread-retry-max-attempts</name><value>10</value><final>false</final><source>yarn-default.xml</source></property>
+<property><name>fs.s3a.audit.enabled</name><value>true</value><final>false</final><source>core-default.xml</source></property>
 <property><name>yarn.nodemanager.amrmproxy.enabled</name><value>false</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>nfs.mountd.port</name><value>4242</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>mapreduce.reduce.merge.inmem.threshold</name><value>1000</value><final>false</final><source>mapred-default.xml</source></property>
@@ -659,7 +659,6 @@
 <property><name>io.mapfile.bloom.size</name><value>1048576</value><final>false</final><source>core-default.xml</source></property>
 <property><name>fs.ftp.data.connection.mode</name><value>ACTIVE_LOCAL_DATA_CONNECTION_MODE</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.client-write-packet-size</name><value>65536</value><final>false</final><source>hdfs-default.xml</source></property>
-<property><name>fs.swift.impl</name><value>org.apache.hadoop.fs.swift.snative.SwiftNativeFileSystem</value><final>false</final><source>core-default.xml</source></property>
 <property><name>yarn.app.mapreduce.shuffle.log.backups</name><value>0</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>yarn.resourcemanager.scheduler.monitor.enable</name><value>false</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.webhdfs.socket.connect-timeout</name><value>60s</value><final>false</final><source>hdfs-default.xml</source></property>
@@ -748,18 +747,20 @@
 <property><name>io.map.index.interval</name><value>128</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.provided.storage.id</name><value>DS-PROVIDED</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.namenode.fs-limits.min-block-size</name><value>1048576</value><final>false</final><source>hdfs-default.xml</source></property>
-<property><name>fs.s3a.s3guard.consistency.retry.interval</name><value>2s</value><final>false</final><source>core-default.xml</source></property>
 <property><name>mapreduce.job.end-notification.max.attempts</name><value>5</value><final>true</final><source>mapred-default.xml</source></property>
 <property><name>dfs.provided.aliasmap.inmemory.server.log</name><value>false</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>yarn.resourcemanager.admin.address</name><value>${yarn.resourcemanager.hostname}:8033</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.provided.aliasmap.load.retries</name><value>0</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.balancer.getBlocks.size</name><value>2147483648</value><final>false</final><source>hdfs-default.xml</source></property>
+<property><name>dfs.client.fsck.read.timeout</name><value>60000ms</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>mapreduce.am.max-attempts</name><value>2</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>dfs.datanode.data.dir</name><value>file://${hadoop.tmp.dir}/dfs/data</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>mapreduce.reduce.shuffle.parallelcopies</name><value>5</value><final>false</final><source>mapred-default.xml</source></property>
+<property><name>dfs.datanode.min.outlier.detection.nodes</name><value>10</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.client.write.byte-array-manager.count-threshold</name><value>128</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>hadoop.security.key.default.cipher</name><value>AES/CTR/NoPadding</value><final>false</final><source>core-default.xml</source></property>
 <property><name>yarn.resourcemanager.recovery.enabled</name><value>false</value><final>false</final><source>yarn-default.xml</source></property>
+<property><name>dfs.datanode.slowpeer.low.threshold.ms</name><value>5</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>mapreduce.reduce.maxattempts</name><value>4</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>dfs.client.deadnode.detection.probe.deadnode.interval.ms</name><value>60000</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>yarn.nodemanager.admin-env</name><value>MALLOC_ARENA_MAX=$MALLOC_ARENA_MAX</value><final>false</final><source>yarn-default.xml</source></property>
@@ -875,10 +876,12 @@
 <property><name>mapreduce.jobhistory.principal</name><value>jhs/_HOST@REALM.TLD</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>dfs.provided.aliasmap.class</name><value>org.apache.hadoop.hdfs.server.common.blockaliasmap.impl.TextFileRegionAliasMap</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>fs.s3a.accesspoint.required</name><value>false</value><final>false</final><source>core-default.xml</source></property>
+<property><name>dfs.client.refresh.read-block-locations.threads</name><value>5</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>mapreduce.job.queuename</name><value>default</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>ipc.client.rpc-timeout.ms</name><value>0</value><final>false</final><source>core-default.xml</source></property>
 <property><name>mapreduce.task.profile.params</name><value>-agentlib:hprof=cpu=samples,heap=sites,force=n,thread=y,verbose=n,file=%s</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>dfs.image.transfer.bandwidthPerSec</name><value>52428800</value><final>false</final><source>hdfs-default.xml</source></property>
+<property><name>dfs.datanode.max.disks.to.report</name><value>5</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>yarn.timeline-service.handler-thread-count</name><value>10</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>yarn.resourcemanager.connect.max-wait.ms</name><value>900000</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>mapreduce.job.max.split.locations</name><value>15</value><final>false</final><source>mapred-default.xml</source></property>
@@ -918,7 +921,6 @@
 <property><name>yarn.nodemanager.runtime.linux.docker.userremapping-gid-threshold</name><value>1</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>yarn.nodemanager.container-manager.thread-count</name><value>20</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.namenode.redundancy.considerLoad</name><value>false</value><final>false</final><source>programmatically</source></property>
-<property><name>fs.s3a.metadatastore.authoritative</name><value>false</value><final>false</final><source>core-default.xml</source></property>
 <property><name>mapreduce.app-submission.cross-platform</name><value>false</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>dfs.image.parallel.load</name><value>false</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.namenode.path.based.cache.block.map.allocation.percent</name><value>0.25</value><final>false</final><source>hdfs-default.xml</source></property>
@@ -966,6 +968,7 @@
 <property><name>fs.s3a.select.input.csv.comment.marker</name><value>#</value><final>false</final><source>core-default.xml</source></property>
 <property><name>yarn.resourcemanager.admin.client.thread-count</name><value>1</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.domain.socket.disable.interval.seconds</name><value>600</value><final>false</final><source>hdfs-default.xml</source></property>
+<property><name>dfs.client.fsck.connect.timeout</name><value>60000ms</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>hadoop.http.idle_timeout.ms</name><value>60000</value><final>false</final><source>core-default.xml</source></property>
 <property><name>mapreduce.map.speculative</name><value>true</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>yarn.timeline-service.recovery.enabled</name><value>false</value><final>false</final><source>yarn-default.xml</source></property>
@@ -974,6 +977,7 @@
 <property><name>yarn.nodemanager.elastic-memory-control.oom-handler</name><value>org.apache.hadoop.yarn.server.nodemanager.containermanager.linux.resources.DefaultOOMHandler</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.client.mmap.enabled</name><value>true</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>mapreduce.reduce.input.buffer.percent</name><value>0.0</value><final>false</final><source>mapred-default.xml</source></property>
+<property><name>hadoop.caller.context.separator</name><value>,</value><final>false</final><source>core-default.xml</source></property>
 <property><name>yarn.timeline-service.reader.class</name><value>org.apache.hadoop.yarn.server.timelineservice.storage.HBaseTimelineReaderImpl</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.datanode.network.counts.cache.max.size</name><value>2147483647</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.qjournal.http.read.timeout.ms</name><value>60000</value><final>false</final><source>hdfs-default.xml</source></property>
@@ -1030,7 +1034,6 @@
 <property><name>yarn.nodemanager.amrmproxy.address</name><value>0.0.0.0:8049</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.client.key.provider.cache.expiry</name><value>864000000</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>ipc.client.fallback-to-simple-auth-allowed</name><value>false</value><final>false</final><source>core-default.xml</source></property>
-<property><name>fs.s3a.s3guard.cli.prune.age</name><value>86400000</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.webhdfs.ugi.expire.after.access</name><value>600000</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>mapreduce.jobhistory.admin.acl</name><value>*</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>mapreduce.jobhistory.recovery.enable</name><value>false</value><final>false</final><source>mapred-default.xml</source></property>
@@ -1063,9 +1066,11 @@
 <property><name>dfs.blockreport.intervalMsec</name><value>21600000</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>io.map.index.skip</name><value>0</value><final>false</final><source>core-default.xml</source></property>
 <property><name>mapreduce.task.merge.progress.records</name><value>10000</value><final>false</final><source>mapred-default.xml</source></property>
+<property><name>dfs.client.refresh.read-block-locations.register-automatically</name><value>true</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.namenode.missing.checkpoint.periods.before.shutdown</name><value>3</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.client.failover.connection.retries</name><value>0</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.edit.log.transfer.timeout</name><value>30000</value><final>false</final><source>hdfs-default.xml</source></property>
+<property><name>dfs.datanode.max.nodes.to.report</name><value>5</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.datanode.du.reserved</name><value>0</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>hadoop.http.authentication.kerberos.principal</name><value>HTTP/_HOST@LOCALHOST</value><final>false</final><source>core-default.xml</source></property>
 <property><name>yarn.nodemanager.disk-health-checker.min-free-space-per-disk-mb</name><value>0</value><final>false</final><source>yarn-default.xml</source></property>
@@ -1096,14 +1101,13 @@
 <property><name>mapreduce.reduce.speculative</name><value>true</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>yarn.nodemanager.localizer.cache.cleanup.interval-ms</name><value>600000</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>hadoop.security.auth_to_local.mechanism</name><value>hadoop</value><final>false</final><source>core-default.xml</source></property>
-<property><name>fs.s3a.metadatastore.fail.on.write.error</name><value>true</value><final>false</final><source>core-default.xml</source></property>
 <property><name>mapreduce.job.ubertask.enable</name><value>false</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>yarn.timeline-service.entity-group-fs-store.retain-seconds</name><value>604800</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.client.use.datanode.hostname</name><value>false</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>mapreduce.job.finish-when-all-reducers-done</name><value>true</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>hadoop.registry.zk.retry.ceiling.ms</name><value>60000</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.namenode.xattrs.enabled</name><value>true</value><final>false</final><source>hdfs-default.xml</source></property>
-<property><name>fs.s3a.s3guard.ddb.table.capacity.write</name><value>0</value><final>false</final><source>core-default.xml</source></property>
+<property><name>fs.azure.enable.readahead</name><value>true</value><final>false</final><source>core-default.xml</source></property>
 <property><name>yarn.nodemanager.linux-container-executor.cgroups.hierarchy</name><value>/hadoop-yarn</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>yarn.app.mapreduce.am.container.log.backups</name><value>0</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>yarn.resourcemanager.nodemanagers.heartbeat-interval-max-ms</name><value>1000</value><final>false</final><source>yarn-default.xml</source></property>
@@ -1131,13 +1135,13 @@
 <property><name>dfs.namenode.audit.log.token.tracking.id</name><value>false</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>hadoop.registry.zk.retry.times</name><value>5</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.balancer.getBlocks.min-block-size</name><value>10485760</value><final>false</final><source>hdfs-default.xml</source></property>
+<property><name>dfs.datanode.ec.reconstruct.write.bandwidthPerSec</name><value>0</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>yarn.scheduler.maximum-allocation-mb</name><value>8192</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>ipc.[port_number].decay-scheduler.decay-factor</name><value>0.5</value><final>false</final><source>core-default.xml</source></property>
 <property><name>hdfs.minidfs.basedir</name><value>/Users/marko/git/local_hdfs_cluster/./HDFS/data</value><final>false</final><source>programmatically</source></property>
 <property><name>fs.AbstractFileSystem.viewfs.impl</name><value>org.apache.hadoop.fs.viewfs.ViewFs</value><final>false</final><source>core-default.xml</source></property>
 <property><name>fs.ftp.host</name><value>0.0.0.0</value><final>false</final><source>core-default.xml</source></property>
 <property><name>yarn.nodemanager.linux-container-executor.nonsecure-mode.local-user</name><value>nobody</value><final>false</final><source>yarn-default.xml</source></property>
-<property><name>fs.s3a.s3guard.ddb.background.sleep</name><value>25ms</value><final>false</final><source>core-default.xml</source></property>
 <property><name>yarn.resourcemanager.am-rm-tokens.master-key-rolling-interval-secs</name><value>86400</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.balancer.keytab.enabled</name><value>false</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.client.retry.window.base</name><value>3000</value><final>false</final><source>hdfs-default.xml</source></property>
@@ -1150,6 +1154,7 @@
 <property><name>yarn.client.failover-retries</name><value>0</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.client.deadnode.detection.probe.suspectnode.threads</name><value>10</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>rpc.metrics.timeunit</name><value>MILLISECONDS</value><final>false</final><source>core-default.xml</source></property>
+<property><name>dfs.namenode.audit.log.with.remote.port</name><value>false</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.client.deadnode.detection.idle.sleep.ms</name><value>10000</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>ipc.client.connect.max.retries</name><value>10</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.ls.limit</name><value>1000</value><final>false</final><source>hdfs-default.xml</source></property>
@@ -1174,7 +1179,6 @@
 <property><name>yarn.log-aggregation.file-controller.TFile.class</name><value>org.apache.hadoop.yarn.logaggregation.filecontroller.tfile.LogAggregationTFileController</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>yarn.webapp.filter-entity-list-by-user</name><value>false</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.namenode.http-address</name><value>0.0.0.0:8020</value><final>false</final><source>programmatically</source></property>
-<property><name>fs.s3a.metadatastore.impl</name><value>org.apache.hadoop.fs.s3a.s3guard.NullMetadataStore</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.namenode.startup.delay.block.deletion.sec</name><value>0</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>yarn.nodemanager.health-checker.interval-ms</name><value>600000</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.heartbeat.interval</name><value>3</value><final>false</final><source>hdfs-default.xml</source></property>
@@ -1245,7 +1249,6 @@
 <property><name>yarn.nodemanager.resource.memory.enabled</name><value>false</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.datanode.lock-reporting-threshold-ms</name><value>300</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.datanode.data.transfer.bandwidthPerSec</name><value>0</value><final>false</final><source>hdfs-default.xml</source></property>
-<property><name>fs.viewfs.overload.scheme.target.swift.impl</name><value>org.apache.hadoop.fs.swift.snative.SwiftNativeFileSystem</value><final>false</final><source>core-default.xml</source></property>
 <property><name>hadoop.registry.zk.root</name><value>/registry</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.balancer.moverThreads</name><value>1000</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.client.retry.max.attempts</name><value>10</value><final>false</final><source>hdfs-default.xml</source></property>
@@ -1255,6 +1258,7 @@
 <property><name>dfs.webhdfs.netty.low.watermark</name><value>32768</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.batched.ls.limit</name><value>100</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.namenode.state.context.enabled</name><value>false</value><final>false</final><source>hdfs-default.xml</source></property>
+<property><name>mapreduce.task.ping-for-liveliness-check.enabled</name><value>false</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>yarn.nodemanager.localizer.client.thread-count</name><value>5</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>dfs.namenode.fslock.fair</name><value>true</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.blockreport.split.threshold</name><value>1000000</value><final>false</final><source>hdfs-default.xml</source></property>
@@ -1320,7 +1324,6 @@
 <property><name>nfs.dump.dir</name><value>/tmp/.hdfs-nfs</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>mapreduce.reduce.skip.maxgroups</name><value>0</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>yarn.nodemanager.resource-monitor.interval-ms</name><value>3000</value><final>false</final><source>yarn-default.xml</source></property>
-<property><name>fs.s3a.s3guard.consistency.retry.limit</name><value>7</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.client.refresh.read-block-locations.ms</name><value>0</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>hadoop.security.instrumentation.requires.admin</name><value>false</value><final>false</final><source>core-default.xml</source></property>
 <property><name>mapreduce.jobhistory.done-dir</name><value>${yarn.app.mapreduce.am.staging-dir}/history/done</value><final>false</final><source>mapred-default.xml</source></property>
@@ -1384,10 +1387,10 @@
 <property><name>dfs.blockreport.incremental.intervalMsec</name><value>0</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>mapreduce.ifile.readahead</name><value>true</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>yarn.nodemanager.runtime.linux.runc.image-tag-to-manifest-plugin</name><value>org.apache.hadoop.yarn.server.nodemanager.containermanager.linux.runtime.runc.ImageTagToManifestPlugin</value><final>false</final><source>yarn-default.xml</source></property>
-<property><name>fs.s3a.s3guard.ddb.table.create</name><value>false</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.namenode.reencrypt.batch.size</name><value>1000</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>fs.s3a.connection.ssl.enabled</name><value>true</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.namenode.read.considerLoad</name><value>false</value><final>false</final><source>hdfs-default.xml</source></property>
+<property><name>dfs.datanode.max.slowdisks.to.exclude</name><value>0</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.datanode.peer.stats.enabled</name><value>false</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>dfs.replication</name><value>1</value><final>false</final><source>programmatically</source></property>
 <property><name>dfs.storage.policy.satisfier.work.multiplier.per.iteration</name><value>1</value><final>false</final><source>hdfs-default.xml</source></property>
@@ -1445,7 +1448,6 @@
 <property><name>dfs.datanode.balance.max.concurrent.moves</name><value>100</value><final>false</final><source>hdfs-default.xml</source></property>
 <property><name>fs.s3a.assumed.role.credentials.provider</name><value>org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider</value><final>false</final><source>core-default.xml</source></property>
 <property><name>dfs.namenode.provided.enabled</name><value>false</value><final>false</final><source>hdfs-default.xml</source></property>
-<property><name>fs.s3a.s3guard.ddb.max.retries</name><value>9</value><final>false</final><source>core-default.xml</source></property>
 <property><name>mapreduce.task.timeout</name><value>600000</value><final>false</final><source>mapred-default.xml</source></property>
 <property><name>yarn.nodemanager.resource.memory-mb</name><value>-1</value><final>false</final><source>yarn-default.xml</source></property>
 <property><name>yarn.sharedcache.nested-level</name><value>3</value><final>false</final><source>yarn-default.xml</source></property>

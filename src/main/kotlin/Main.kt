@@ -8,7 +8,7 @@ import java.nio.file.StandardOpenOption
 const val READY_MESSAGE = "testcontainers.hdfs.status.READY"
 
 fun main(args: Array<String>) {
-
+    
     val hdfsData        = "./HDFS/data"
     val hdfsConfig      = "./HDFS/config"
     val bindAddress     = "0.0.0.0"
